@@ -1,0 +1,34 @@
+package org.module;
+
+import org.model.CupomDescontoEntrega;
+import org.model.Pedido;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MetodoDescontoTaxaPorTipoCliente implements IMetodoDescontoTaxaEntrega {
+    private Map<String, Double> descontosPorTipoCliente;
+    private String tipoCliente;
+
+    public MetodoDescontoTaxaPorTipoCliente() {
+        descontosPorTipoCliente = new HashMap<>();
+        descontosPorTipoCliente.put("ouro", 3.0);
+        descontosPorTipoCliente.put("prata", 2.0);
+        descontosPorTipoCliente.put("bronze", 1.0);
+    }
+
+    @Override
+    public void calcularDesconto(Pedido pedido, Double penalidade) {
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom Por Tipo de Cliente -"+tipoCliente,descontosPorTipoCliente.get(tipoCliente.toLowerCase())-penalidade));
+    }
+
+    @Override
+    public boolean seAplica(Pedido pedido) {
+        tipoCliente=pedido.getClient().getTipo();
+        return descontosPorTipoCliente.containsKey(tipoCliente.toLowerCase());
+    }
+
+    public Double getValorDesconto(Pedido pedido){
+        return descontosPorTipoCliente.get(tipoCliente.toLowerCase());
+    }
+}
