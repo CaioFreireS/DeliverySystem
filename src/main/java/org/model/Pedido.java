@@ -74,6 +74,10 @@ public class Pedido {
         return (ArrayList<CupomDescontoEntrega>) this.cuponsDescontoEntrega;
     }
 
+    public LocalDate getData() {
+        return data;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
