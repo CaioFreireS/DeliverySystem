@@ -8,12 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MetodoDescontoPorIntervaloData implements IMetodoDescontoTaxaEntrega{
-    private Map<Period,Double> descontosPorPeriodo;
+    private LocalDate dataInicial;
+    private LocalDate dataFinal;
+    private Double descontoPorIntervaloDataPercentual;
 
     public MetodoDescontoPorIntervaloData(){
-        descontosPorPeriodo= new HashMap<>();
-        Period.between(LocalDate.of(2025,5, 22), LocalDate.of(2025,5, 22))
-        descontosPorPeriodo.put();
+        dataInicial=LocalDate.now();
+        dataFinal=LocalDate.now();
+    }
+
+    public MetodoDescontoPorIntervaloData(LocalDate dataInicial, LocalDate dataFinal, Double descontoPorIntervaloDataPercentual){
+        this.dataInicial=dataInicial;
+        this.dataFinal=dataFinal;
+        this.descontoPorIntervaloDataPercentual=descontoPorIntervaloDataPercentual;
     }
 
     @Override
@@ -21,10 +28,10 @@ public class MetodoDescontoPorIntervaloData implements IMetodoDescontoTaxaEntreg
     }
     @Override
     public boolean seAplica(Pedido pedido) {
-        return false;
+        return(pedido.getData().isAfter(dataInicial) && pedido.getData().isBefore(dataFinal));
     }
     @Override
     public Double getValorDesconto(Pedido pedido) {
-        return null;
+        return (pedido.getTaxaEntrega()-(pedido.getTaxaEntrega()/100)*descontoPorIntervaloDataPercentual);
     }
 }
