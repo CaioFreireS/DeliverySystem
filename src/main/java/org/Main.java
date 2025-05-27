@@ -30,6 +30,7 @@ public class Main {
         System.out.println(p1.toString());
 
         CalculadoraDeDescontoService calc1 = new CalculadoraDeDescontoService();
+        calc1.setInterruptor(true);
 
         calc1.calcularDesconto(p1);
 
