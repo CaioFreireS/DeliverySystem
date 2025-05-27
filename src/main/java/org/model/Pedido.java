@@ -44,6 +44,7 @@ public class Pedido {
     }
 
     public Double getTaxaEntrega(){
+        aplicarDesconto();
         return this.taxaEntrega;
     }
 
