@@ -19,8 +19,8 @@ public class MetodoDescontoTaxaPorBairro implements IMetodoDescontoTaxaEntrega {
     }
 
     @Override
-    public void calcularDesconto(Pedido pedido, Double penalidade) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Bairro -"+bairroCliente, descontosPorBairro.get(bairroCliente.toLowerCase())-penalidade));
+    public void calcularDesconto(Pedido pedido) {
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Bairro -"+bairroCliente, descontosPorBairro.get(bairroCliente.toLowerCase())));
     }
 
     @Override

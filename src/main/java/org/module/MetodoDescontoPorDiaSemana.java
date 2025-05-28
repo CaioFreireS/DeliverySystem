@@ -17,8 +17,8 @@ public class MetodoDescontoPorDiaSemana implements IMetodoDescontoTaxaEntrega {
     }
 
     @Override
-    public void calcularDesconto(Pedido pedido, Double penalidade) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto por dia da semana "+pedido.getData().getDayOfWeek().toString(), (pedido.getTaxaEntrega()*descontoPorDiaSemana.get(pedido.getData().getDayOfWeek().toString().toLowerCase()))/100-penalidade));
+    public void calcularDesconto(Pedido pedido) {
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto por dia da semana "+pedido.getData().getDayOfWeek().toString(), (pedido.getTaxaEntrega()*descontoPorDiaSemana.get(pedido.getData().getDayOfWeek().toString().toLowerCase()))/100));
     }
     @Override
     public boolean seAplica(Pedido pedido) {

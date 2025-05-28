@@ -15,8 +15,10 @@ public class Main {
         Cliente c1 = new Cliente("Caio","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
         Cliente c2 = new Cliente("Bernardo","Prata",10.0,"Rua S Robert Kennedy - 53", "Bela Vista", "Alegre");
         Cliente c3 = new Cliente("Lukas","Bronze",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
+        Cliente c4 = new Cliente("jao","",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
 
-        Pedido p1 = new Pedido(c1, LocalDate.now());
+
+        Pedido p1 = new Pedido(c4, LocalDate.now());
         Pedido p2 = new Pedido(c2, LocalDate.now());
 
         p1.adicionarItem(new Item("Hamburgue",1, 13.0, "Alimentação"));
@@ -33,10 +35,12 @@ public class Main {
         calc1.setInterruptor(true);
 
         calc1.calcularDesconto(p1);
-
-        System.out.println("Desconto Concedidos: "+ p1.getCuponsDescontoEntrega());
-        System.out.println("Desconto deram: -"+ p1.getDescontoConcedido()+"R$");
         System.out.println("Sua taxa de entrega é: "+ p1.getTaxaEntrega());
+        System.out.println("Descontos Concedidos: "+ p1.getCuponsDescontoEntrega());
+        System.out.println("Descontos irão dar: -"+ p1.getDescontoConcedido()+"R$");
+
+        p1.aplicarDesconto();
+        System.out.println("Sua taxa de entrega com os cupons é: "+ p1.getTaxaEntrega());
 
         System.out.println(p1.toString());
     }

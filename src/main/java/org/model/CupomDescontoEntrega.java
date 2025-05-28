@@ -17,6 +17,14 @@ public class CupomDescontoEntrega {
         return nomeMetodo;
     }
 
+    public void setValorDesconto(Double valorDesconto) {
+        this.valorDesconto = valorDesconto;
+    }
+
+    public void setNomeMetodo(String nomeMetodo) {
+        this.nomeMetodo = nomeMetodo;
+    }
+
     @Override
     public String toString() {
         return "CupomDescontoEntrega{" +

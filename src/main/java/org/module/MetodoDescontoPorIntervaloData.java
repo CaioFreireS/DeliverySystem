@@ -23,8 +23,8 @@ public class MetodoDescontoPorIntervaloData implements IMetodoDescontoTaxaEntreg
     }
 
     @Override
-    public void calcularDesconto(Pedido pedido, Double penalidade) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto do dia: "+dataInicial+"-"+dataFinal, valorDesconto));
+    public void calcularDesconto(Pedido pedido) {
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto do dia: "+dataInicial+"<>"+dataFinal, (pedido.getTaxaEntrega()*valorDesconto)/100));
     }
 
     @Override

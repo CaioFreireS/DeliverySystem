@@ -3,7 +3,7 @@ package org.module;
 import org.model.Pedido;
 
 public interface IMetodoDescontoTaxaEntrega {
-    public void calcularDesconto(Pedido pedido, Double penalidade);
+    public void calcularDesconto(Pedido pedido);
     public boolean seAplica(Pedido pedido);
     public Double getValorDesconto(Pedido pedido);
 }

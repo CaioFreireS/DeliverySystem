@@ -12,7 +12,7 @@ public class Pedido {
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
 
     public Pedido(Cliente cliente, LocalDate data){
-        this.taxaEntrega = 10;
+        this.taxaEntrega = 30;
         this.data = data;
         this.cliente = cliente;
         this.itens = new ArrayList<Item>();
@@ -30,8 +30,6 @@ public class Pedido {
             valorTotal += item.getValorTotal();
         }
 
-        aplicarDesconto();
-
         return valorTotal + this.taxaEntrega;
     }
 
@@ -44,7 +42,6 @@ public class Pedido {
     }
 
     public Double getTaxaEntrega(){
-        aplicarDesconto();
         return this.taxaEntrega;
     }
 

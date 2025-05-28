@@ -13,8 +13,8 @@ public class MetodoDescontoValorPedido implements IMetodoDescontoTaxaEntrega {
     }
 
     @Override
-    public void calcularDesconto(Pedido pedido, Double penalidade) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto para Pedido acima de "+limiteValorPedido+" R$", this.VALOR_DESCONTO - penalidade));
+    public void calcularDesconto(Pedido pedido) {
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto para Pedido acima de "+limiteValorPedido+" R$", this.VALOR_DESCONTO));
     }
 
     @Override

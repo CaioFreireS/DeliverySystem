@@ -18,13 +18,10 @@ public class MetodoDescontoTipoItem implements IMetodoDescontoTaxaEntrega {
     }
 
     @Override
-    public void calcularDesconto(Pedido pedido, Double penalidade) {
+    public void calcularDesconto(Pedido pedido) {
         for (Item item : pedido.getItens()) {
-            if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase()) && pedido.getDescontoConcedido()<10) {
-                if (pedido.getDescontoConcedido()+descontosPorTipoItem.get(item.getTipo().toLowerCase())>10){
-                    penalidade=descontosPorTipoItem.get(item.getTipo().toLowerCase())+pedido.getDescontoConcedido()-10;
-                }
-                pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Item do Tipo -" + item.getTipo(), descontosPorTipoItem.get(item.getTipo().toLowerCase())-penalidade));
+            if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase()) && pedido.getDescontoConcedido()<pedido.getTaxaEntrega()) {
+                pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Item do Tipo -" + item.getTipo(), descontosPorTipoItem.get(item.getTipo().toLowerCase())));
             }
         }
     }
