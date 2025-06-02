@@ -1,4 +1,4 @@
-package org.module;
+package org.SistemaDesconto;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Pedido;
@@ -20,7 +20,7 @@ public class MetodoDescontoTaxaPorBairro implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public void calcularDesconto(Pedido pedido) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Bairro -"+bairroCliente, descontosPorBairro.get(bairroCliente.toLowerCase())));
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Bairro "+bairroCliente, descontosPorBairro.get(bairroCliente.toLowerCase())));
     }
 
     @Override

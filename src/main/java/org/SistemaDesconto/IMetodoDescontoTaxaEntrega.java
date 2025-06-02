@@ -1,4 +1,4 @@
-package org.module;
+package org.SistemaDesconto;
 
 import org.model.Pedido;
 

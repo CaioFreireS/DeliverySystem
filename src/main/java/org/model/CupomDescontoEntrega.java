@@ -29,7 +29,7 @@ public class CupomDescontoEntrega {
     public String toString() {
         return "CupomDescontoEntrega{" +
                 "nomeMetodo='" + nomeMetodo + '\'' +
-                ", valorDesconto=" + valorDesconto +
+                ", valorDesconto= R$ " + valorDesconto +
                 '}';
     }
 }

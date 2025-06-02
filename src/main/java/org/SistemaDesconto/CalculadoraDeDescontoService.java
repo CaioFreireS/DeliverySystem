@@ -1,4 +1,4 @@
-package org.module;
+package org.SistemaDesconto;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Pedido;
@@ -44,7 +44,7 @@ public class CalculadoraDeDescontoService {
         Double penalidade = descontoAtual - pedido.getTaxaEntrega();
 
         if (descontoAtual > pedido.getTaxaEntrega()){
-            cupomFinal.setNomeMetodo(cupomFinal.getNomeMetodo() + " -Penalizado em " + penalidade + "R$");
+            cupomFinal.setNomeMetodo(cupomFinal.getNomeMetodo() + " -Penalizado em R$ " + penalidade);
             cupomFinal.setValorDesconto(cupomFinal.getValorDesconto() - penalidade);
         }
     }

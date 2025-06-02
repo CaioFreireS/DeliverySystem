@@ -4,7 +4,7 @@ package org;
 import org.model.Cliente;
 import org.model.Item;
 import org.model.Pedido;
-import org.module.CalculadoraDeDescontoService;
+import org.SistemaDesconto.CalculadoraDeDescontoService;
 
 import java.time.LocalDate;
 
@@ -35,12 +35,12 @@ public class Main {
         calc1.setInterruptor(true);
 
         calc1.calcularDesconto(p1);
-        System.out.println("Sua taxa de entrega é: "+ p1.getTaxaEntrega());
+        System.out.println("Sua taxa de entrega é: R$ "+ p1.getTaxaEntrega());
         System.out.println("Descontos Concedidos: "+ p1.getCuponsDescontoEntrega());
-        System.out.println("Descontos irão dar: -"+ p1.getDescontoConcedido()+"R$");
+        System.out.println("Descontos irão dar: - R$ "+ p1.getDescontoConcedido());
 
         p1.aplicarDesconto();
-        System.out.println("Sua taxa de entrega com os cupons é: "+ p1.getTaxaEntrega());
+        System.out.println("Sua taxa de entrega com os cupons é: R$"+ p1.getTaxaEntrega());
 
         System.out.println(p1.toString());
     }

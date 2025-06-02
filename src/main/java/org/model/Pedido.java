@@ -12,7 +12,7 @@ public class Pedido {
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
 
     public Pedido(Cliente cliente, LocalDate data){
-        this.taxaEntrega = 30;
+        this.taxaEntrega = 10;
         this.data = data;
         this.cliente = cliente;
         this.itens = new ArrayList<Item>();
@@ -83,7 +83,7 @@ public class Pedido {
                 ", cliente=" + cliente.getNome() +
                 ", itens=" + itens +
                 ", cuponsDescontoEntrega=" + cuponsDescontoEntrega +
-                ", valor do Pedido=" + getValorPedido() +
+                ", valor do Pedido= R$ " + getValorPedido() +
                 '}';
     }
 }

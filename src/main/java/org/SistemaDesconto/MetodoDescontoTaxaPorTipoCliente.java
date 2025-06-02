@@ -1,4 +1,4 @@
-package org.module;
+package org.SistemaDesconto;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Pedido;
@@ -20,7 +20,7 @@ public class MetodoDescontoTaxaPorTipoCliente implements IMetodoDescontoTaxaEntr
 
     @Override
     public void calcularDesconto(Pedido pedido) {
-        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom Por Tipo de Cliente -"+tipoCliente,descontosPorTipoCliente.get(tipoCliente.toLowerCase())));
+        pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom Por Tipo de Cliente ("+tipoCliente+")",descontosPorTipoCliente.get(tipoCliente.toLowerCase())));
     }
 
     @Override

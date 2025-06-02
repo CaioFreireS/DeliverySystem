@@ -26,7 +26,7 @@ public class Item {
         return "Item{" +
                 "nome='" + nome + '\'' +
                 ", quantidade=" + quantidade +
-                ", valorUnitario=" + valorUnitario +
+                ", valorUnitario= R$ " + valorUnitario +
                 ", tipo='" + tipo + '\'' +
                 '}';
     }
