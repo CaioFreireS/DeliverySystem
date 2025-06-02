@@ -22,7 +22,4 @@ public class MetodoDescontoValorPedido implements IMetodoDescontoTaxaEntrega {
         return (pedido.getValorPedido()>limiteValorPedido && pedido.getDescontoConcedido()<10);
     }
 
-    public Double getValorDesconto(Pedido pedido) {
-        return VALOR_DESCONTO;
-    }
 }

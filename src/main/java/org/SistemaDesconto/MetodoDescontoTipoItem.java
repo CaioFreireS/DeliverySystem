@@ -36,14 +36,6 @@ public class MetodoDescontoTipoItem implements IMetodoDescontoTaxaEntrega {
         return false;
     }
 
-    public Double getValorDesconto(Pedido pedido){
-        Double valortotal = 0.0;
-        for (Item item : pedido.getItens()) {
-            if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase())) {
-                valortotal+=descontosPorTipoItem.get(item.getTipo().toLowerCase());
-            }
-        }
-        return valortotal;
-    }
+
 
 }

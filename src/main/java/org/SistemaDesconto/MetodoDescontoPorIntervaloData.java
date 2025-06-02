@@ -32,8 +32,4 @@ public class MetodoDescontoPorIntervaloData implements IMetodoDescontoTaxaEntreg
         return pedido.getData().isAfter(dataInicial) && pedido.getData().isBefore(dataFinal);
     }
 
-    @Override
-    public Double getValorDesconto(Pedido pedido) {
-        return valorDesconto;
-    }
 }

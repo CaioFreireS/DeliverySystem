@@ -29,7 +29,4 @@ public class MetodoDescontoTaxaPorBairro implements IMetodoDescontoTaxaEntrega {
         return descontosPorBairro.containsKey(bairroCliente.toLowerCase());
     }
 
-    public Double getValorDesconto(Pedido pedido){
-        return descontosPorBairro.get(bairroCliente);
-    }
 }

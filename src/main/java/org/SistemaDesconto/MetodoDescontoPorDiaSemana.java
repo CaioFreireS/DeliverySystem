@@ -24,8 +24,5 @@ public class MetodoDescontoPorDiaSemana implements IMetodoDescontoTaxaEntrega {
     public boolean seAplica(Pedido pedido) {
         return descontoPorDiaSemana.containsKey(pedido.getData().getDayOfWeek().toString().toLowerCase());
     }
-    @Override
-    public Double getValorDesconto(Pedido pedido) {
-        return descontoPorDiaSemana.get(pedido.getData().getDayOfWeek().toString().toLowerCase())*pedido.getTaxaEntrega()/100;
-    }
+
 }

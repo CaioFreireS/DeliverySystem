@@ -32,7 +32,4 @@ public class MetodoDescontoTaxaPorTipoCliente implements IMetodoDescontoTaxaEntr
         return descontosPorTipoCliente.containsKey(tipoCliente.toLowerCase());
     }
 
-    public Double getValorDesconto(Pedido pedido){
-        return descontosPorTipoCliente.get(tipoCliente.toLowerCase());
-    }
 }
