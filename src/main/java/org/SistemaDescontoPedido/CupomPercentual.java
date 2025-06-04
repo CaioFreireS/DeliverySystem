@@ -25,6 +25,6 @@ public class CupomPercentual implements iCategoriaDescontoPedido{
     @Override
     public void calcularValorDescontado(Pedido pedido) {
         CupomDescontoPedido cupom = pedido.getCupomDescontoPedido();
-        cupom.setValorDescontado(descontoPercentual.get(cupom.getCodigoDescontoPedido().toUpperCase()));
+        cupom.setValorDescontado(pedido.getValorPedido()*(descontoPercentual.get(cupom.getCodigoDescontoPedido().toUpperCase()))/100);
     }
 }
