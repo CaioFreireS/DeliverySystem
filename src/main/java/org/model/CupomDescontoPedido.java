@@ -5,9 +5,8 @@ public class CupomDescontoPedido {
     private Double percentualDescontoPedido;
     private Double valorDescontado;
 
-    public CupomDescontoPedido(String codigo, Double percentual) {
+    public CupomDescontoPedido(String codigo) {
         this.codigoDescontoPedido = codigo;
-        this.percentualDescontoPedido = percentual;
     }
     public String getCodigoDescontoPedido() {
         return codigoDescontoPedido;
@@ -15,6 +14,10 @@ public class CupomDescontoPedido {
 
     public Double getPercentualDescontoPedido() {
         return percentualDescontoPedido;
+    }
+
+    public void setPercentualDescontoPedido(Double percentualDescontoPedido) {
+        this.percentualDescontoPedido = percentualDescontoPedido;
     }
 
     public Double getValorDescontado() {

@@ -11,6 +11,7 @@ public class Pedido {
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
     private CupomDescontoPedido cupomDescontoPedido;
+    private Double valorPedido;
 
     public Pedido(Cliente cliente, LocalDate data){
         this.taxaEntrega = 10;
@@ -18,6 +19,7 @@ public class Pedido {
         this.cliente = cliente;
         this.itens = new ArrayList<Item>();
         this.cuponsDescontoEntrega = new ArrayList<CupomDescontoEntrega>();
+        this.cupomDescontoPedido =  null;
     }
 
     public void adicionarItem(Item item){
@@ -25,13 +27,11 @@ public class Pedido {
     }
 
     public Double getValorPedido(){
-        Double valorTotal=0.0;
+        return this.valorPedido;
+    }
 
-        for (Item item : this.itens) {
-            valorTotal += item.getValorTotal();
-        }
-
-        return valorTotal + this.taxaEntrega;
+    public void setValorPedido(Double valorPedido) {
+        this.valorPedido = valorPedido;
     }
 
     public Cliente getClient(){
@@ -50,13 +50,17 @@ public class Pedido {
         cuponsDescontoEntrega.add(desconto);
     }
 
-    public void aplicarDesconto(){
+    public void aplicarDescontoEntrega(){
         for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
             this.taxaEntrega -= cupom.getValorDesconto();
             if (this.taxaEntrega < 0) {
                 this.taxaEntrega = 0;
             }
         }
+    }
+
+    public void aplicarDescontoPedido(){
+        this.valorPedido-=this.cupomDescontoPedido.getValorDescontado();
     }
 
     public Double getDescontoConcedido(){
