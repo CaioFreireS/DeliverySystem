@@ -10,6 +10,7 @@ public class Pedido {
     private Cliente cliente;
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
+    private CupomDescontoPedido cupomDescontoPedido;
 
     public Pedido(Cliente cliente, LocalDate data){
         this.taxaEntrega = 10;
@@ -66,6 +67,14 @@ public class Pedido {
         }
 
         return descontoConcedido;
+    }
+
+    public CupomDescontoPedido getCupomDescontoPedido() {
+        return cupomDescontoPedido;
+    }
+
+    public void setCupomDescontoPedido(CupomDescontoPedido cupomDescontoPedido) {
+        this.cupomDescontoPedido = cupomDescontoPedido;
     }
 
     public ArrayList<CupomDescontoEntrega> getCuponsDescontoEntrega(){
