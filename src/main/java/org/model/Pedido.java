@@ -96,6 +96,7 @@ public class Pedido {
                 ", cliente=" + cliente.getNome() +
                 ", itens=" + itens +
                 ", cuponsDescontoEntrega=" + cuponsDescontoEntrega +
+                ", cupomDescontoPedido=" + cupomDescontoPedido +
                 ", valor do Pedido= R$ " + getValorPedido() +
                 '}';
     }

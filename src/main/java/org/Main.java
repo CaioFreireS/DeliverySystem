@@ -55,7 +55,5 @@ public class Main {
         p1.aplicarDescontoPedido();
         calc0.calcularValorPedido(p1);
         System.out.println(p1.toString());
-
-        System.out.println(p1.toString());
     }
 }
