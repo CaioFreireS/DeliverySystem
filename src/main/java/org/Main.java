@@ -4,7 +4,7 @@ package org;
 import org.model.Cliente;
 import org.model.Item;
 import org.model.Pedido;
-import org.SistemaDesconto.CalculadoraDeDescontoService;
+import org.SistemaDescontoEntrega.CalculadoraDescontoEntregaService;
 
 import java.time.LocalDate;
 
@@ -18,7 +18,7 @@ public class Main {
         Cliente c4 = new Cliente("jao","",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
 
 
-        Pedido p1 = new Pedido(c4, LocalDate.now());
+        Pedido p1 = new Pedido(c1, LocalDate.now());
         Pedido p2 = new Pedido(c2, LocalDate.now());
 
         p1.adicionarItem(new Item("Hamburgue",1, 13.0, "Alimentação"));
@@ -31,7 +31,7 @@ public class Main {
 
         System.out.println(p1.toString());
 
-        CalculadoraDeDescontoService calc1 = new CalculadoraDeDescontoService();
+        CalculadoraDescontoEntregaService calc1 = new CalculadoraDescontoEntregaService();
         calc1.setInterruptor(true);
 
         calc1.calcularDesconto(p1);

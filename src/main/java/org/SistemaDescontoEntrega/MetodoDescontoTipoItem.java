@@ -1,4 +1,4 @@
-package org.SistemaDesconto;
+package org.SistemaDescontoEntrega;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Item;
