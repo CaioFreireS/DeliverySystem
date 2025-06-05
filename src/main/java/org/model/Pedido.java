@@ -35,7 +35,7 @@ public class Pedido {
                 valorTotal += item.getValorTotal();
             }
 
-            return(valorTotal + this.taxaEntrega);
+            this.valorPedido=(valorTotal + this.taxaEntrega);
         }
         return(this.valorPedido);
     }
@@ -98,7 +98,7 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-                "valor do Pedido= R$ " + valorPedido +
+                "valor do Pedido= R$ " + getValorPedido() +
                 ", taxaEntrega=" + taxaEntrega +
                 ", cliente=" + cliente.getNome() +
                 ", itens=" + itens +

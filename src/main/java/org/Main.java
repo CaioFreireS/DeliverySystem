@@ -1,7 +1,6 @@
 package org;
 
 
-import org.AuxClass.CalculadoraValorItensPedido;
 import org.SistemaDescontoPedido.CalculadoraDescontoPedidoService;
 import org.model.Cliente;
 import org.model.Item;
@@ -33,8 +32,6 @@ public class Main {
         p2.adicionarItem(new Item("Hamburgue",1, 13.0, "Alimentação"));
 
         System.out.println(p1.toString());
-        CalculadoraValorItensPedido calc0 = new CalculadoraValorItensPedido();
-        calc0.calcularValorPedido(p1);
 
         CalculadoraDescontoEntregaService calc1 = new CalculadoraDescontoEntregaService();
         calc1.setInterruptor(true);
@@ -45,7 +42,6 @@ public class Main {
         System.out.println("Descontos irão dar: - R$ "+ p1.getDescontoConcedido());
 
         p1.aplicarDescontoEntrega();
-        calc0.calcularValorPedido(p1);
         System.out.println("Sua taxa de entrega com os cupons é: R$"+ p1.getTaxaEntrega());
 
         CalculadoraDescontoPedidoService calc2 = new CalculadoraDescontoPedidoService();
@@ -53,7 +49,6 @@ public class Main {
         System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedido());
         System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: - R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
         p1.aplicarDescontoPedido();
-        calc0.calcularValorPedido(p1);
         System.out.println(p1.toString());
     }
 }
