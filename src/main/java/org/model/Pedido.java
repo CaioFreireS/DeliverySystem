@@ -16,17 +16,19 @@ public class Pedido {
 
     public Pedido(Cliente cliente, LocalDate data){
         this.taxaEntrega = 10;
+        if (data == null){
+            throw new RuntimeException("ERRO! Data não pode ser vazia.");
+        }
         this.data = data;
+        if (cliente == null){
+            throw new RuntimeException("ERRO! Cliente não pode ser vazio.");
+        }
         this.cliente = cliente;
         this.itens = new ArrayList<Item>();
         this.cuponsDescontoEntrega = new ArrayList<CupomDescontoEntrega>();
         this.cupomDescontoPedido = null;
         this.valorPedidoTotal = 0.0;
         this.descontoPedido = 0.0;
-    }
-
-    public void adicionarItem(Item item){
-        itens.add(item);
     }
 
     public Double getValorPedidoTotal() {
@@ -58,18 +60,6 @@ public class Pedido {
         return this.taxaEntrega;
     }
 
-    public void addCupomDescontoEntrega(CupomDescontoEntrega desconto){
-        cuponsDescontoEntrega.add(desconto);
-    }
-
-    public void aplicarDescontoEntrega(){
-        Double descontoEntregaTotal = 0.0;
-        for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
-            descontoEntregaTotal += cupom.getValorDesconto();
-        }
-        this.taxaEntrega -= descontoEntregaTotal;
-    }
-
     public Double getDescontoEntregaConcedido(){
         Double descontoConcedido = 0.0;
 
@@ -80,28 +70,62 @@ public class Pedido {
         return descontoConcedido;
     }
 
-    public CupomDescontoPedido getCupomDescontoPedido() {
-        return cupomDescontoPedido;
-    }
-
-    public void setDescontoPedido(Double descontoPedido) {
-        this.descontoPedido = descontoPedido;
-    }
-
-    public void aplicarDescontoPedido(){
-        this.setDescontoPedido(this.cupomDescontoPedido.getValorDescontado());
-    }
-
-    public void setCupomDescontoPedido(CupomDescontoPedido novoCupom) {
-        this.cupomDescontoPedido = novoCupom;
-    }
-
     public ArrayList<CupomDescontoEntrega> getCuponsDescontoEntrega(){
         return (ArrayList<CupomDescontoEntrega>) this.cuponsDescontoEntrega;
     }
 
     public LocalDate getData() {
         return data;
+    }
+
+    public CupomDescontoPedido getCupomDescontoPedido() {
+        return cupomDescontoPedido;
+    }
+
+    public void setDescontoPedido(Double descontoPedido) {
+        if (descontoPedido == null){
+            throw new RuntimeException("ERRO! Desconto por pedido não pode ser vazio.");
+        }
+        this.descontoPedido = descontoPedido;
+    }
+
+    public void setCupomDescontoPedido(CupomDescontoPedido novoCupom) {
+        if (novoCupom == null){
+            throw new RuntimeException("ERRO! Cupom de Desconto para Pedido não pode ser vazio.");
+        }
+        this.cupomDescontoPedido = novoCupom;
+    }
+
+    public void adicionarItem(Item item){
+        if (item == null){
+            throw new RuntimeException("ERRO! Item não pode ser vazio.");
+        }
+        itens.add(item);
+    }
+
+    public void addCupomDescontoEntrega(CupomDescontoEntrega desconto){
+        if (desconto == null){
+            throw new RuntimeException("ERRO! Cupom de Desconto para Entrega não pode ser vazio.");
+        }
+        cuponsDescontoEntrega.add(desconto);
+    }
+
+    public void aplicarDescontoEntrega(){
+        Double descontoEntregaTotal = 0.0;
+        for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
+            descontoEntregaTotal += cupom.getValorDesconto();
+        }
+        this.taxaEntrega -= descontoEntregaTotal;
+        if(this.taxaEntrega < 0){
+            throw new RuntimeException("ERRO! Aplicou descontos de entrega a mais do limite.");
+        }
+    }
+
+    public void aplicarDescontoPedido(){
+        if (cupomDescontoPedido.getValorDescontado() <= 0){
+            throw new RuntimeException("ERRO! Desconto por Pedido não pode ser menor ou igual a 0.");
+        }
+        this.setDescontoPedido(this.cupomDescontoPedido.getValorDescontado());
     }
 
     @Override

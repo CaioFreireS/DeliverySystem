@@ -20,15 +20,18 @@ public class MetodoDescontoTaxaPorTipoCliente implements IMetodoDescontoTaxaEntr
 
     @Override
     public void calcularDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom Por Tipo de Cliente ("+tipoCliente+")",descontosPorTipoCliente.get(tipoCliente.toLowerCase())));
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        tipoCliente=pedido.getClient().getTipo();
-        if (tipoCliente.isEmpty()){
-            tipoCliente="nenhum";
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
         }
+        tipoCliente=pedido.getClient().getTipo();
         return descontosPorTipoCliente.containsKey(tipoCliente.toLowerCase());
     }
 

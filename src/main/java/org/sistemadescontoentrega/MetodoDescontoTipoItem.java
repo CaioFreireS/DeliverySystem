@@ -19,6 +19,11 @@ public class MetodoDescontoTipoItem implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public void calcularDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        } else if (pedido.getItens() == null) {
+            throw new RuntimeException("ERRO! Seu pedido não possui nenhum item");
+        }
         for (Item item : pedido.getItens()) {
             if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase()) && pedido.getDescontoEntregaConcedido()<pedido.getTaxaEntrega()) {
                 pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Item do Tipo (" + item.getTipo() + ")", descontosPorTipoItem.get(item.getTipo().toLowerCase())));
@@ -28,6 +33,11 @@ public class MetodoDescontoTipoItem implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public boolean seAplica(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        } else if (pedido.getItens() == null) {
+            throw new RuntimeException("ERRO! Seu pedido não possui nenhum item");
+        }
         for (Item item : pedido.getItens()) {
             if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase())){
                 return true;

@@ -25,6 +25,12 @@ public class CategoriaCupomPercentual implements ICategoriaCupomDescontoPedido {
 
     @Override
     public void calcularValorDescontado(Pedido pedido, String codigo) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
+        if (codigo == null || codigo.isEmpty()) {
+            throw new RuntimeException("ERRO! o Codigo do Desconto não pode ser nulo");
+        }
         CupomDescontoPedido cupom = new CupomDescontoPedido(codigo);
         cupom.setPercentualDescontoPedido(descontoPercentual.get(cupom.getCodigoDescontoPedido().toUpperCase()));
         cupom.setValorDescontado(pedido.getValorPedidoTotal()*(descontoPercentual.get(cupom.getCodigoDescontoPedido().toUpperCase()))/100);
@@ -33,6 +39,12 @@ public class CategoriaCupomPercentual implements ICategoriaCupomDescontoPedido {
 
     @Override
     public boolean seAplica(Pedido pedido, String codigo) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
+        if (codigo == null || codigo.isEmpty()) {
+            throw new RuntimeException("ERRO! o Codigo do Desconto não pode ser nulo");
+        }
         return (descontoPercentual.containsKey(codigo.toUpperCase()) && pedido.getCupomDescontoPedido() == null || descontoPercentual.get(codigo.toUpperCase()) > pedido.getCupomDescontoPedido().getPercentualDescontoPedido());
     }
 }

@@ -20,11 +20,17 @@ public class MetodoDescontoTaxaPorBairro implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public void calcularDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Bairro "+bairroCliente, descontosPorBairro.get(bairroCliente.toLowerCase())));
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         bairroCliente=pedido.getClient().getBairro();
         return descontosPorBairro.containsKey(bairroCliente.toLowerCase());
     }

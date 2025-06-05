@@ -20,7 +20,14 @@ public class CalculadoraDescontoEntregaService {
         metodosDeDesconto.add(new MetodoDescontoTipoItem());
         metodosDeDesconto.add(new MetodoDescontoValorPedido(200.0));}
 
+    public void setInterruptor (boolean interruptor) {
+        this.interruptor = interruptor;
+    }
+
     public void calcularDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         if (interruptor) {
             for (IMetodoDescontoTaxaEntrega metodo : metodosDeDesconto){
                 if(metodo.seAplica(pedido) && pedido.getDescontoEntregaConcedido()<pedido.getTaxaEntrega()){
@@ -33,11 +40,10 @@ public class CalculadoraDescontoEntregaService {
         }
     }
 
-    public void setInterruptor (boolean interruptor) {
-        this.interruptor = interruptor;
-    }
-
     public void penalizaDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         Double descontoAtual = pedido.getDescontoEntregaConcedido();
         ArrayList<CupomDescontoEntrega> cupons = pedido.getCuponsDescontoEntrega();
         CupomDescontoEntrega cupomFinal = cupons.get(cupons.size()-1);
