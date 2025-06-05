@@ -18,10 +18,16 @@ public class MetodoDescontoPorDiaSemana implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public void calcularDesconto(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Desconto por dia da semana "+pedido.getData().getDayOfWeek().toString(), (pedido.getTaxaEntrega()*descontoPorDiaSemana.get(pedido.getData().getDayOfWeek().toString().toLowerCase()))/100));
     }
     @Override
     public boolean seAplica(Pedido pedido) {
+        if(pedido == null) {
+            throw new RuntimeException("ERRO! Pedido não pode ser nulo");
+        }
         return descontoPorDiaSemana.containsKey(pedido.getData().getDayOfWeek().toString().toLowerCase());
     }
 
