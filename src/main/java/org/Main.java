@@ -13,7 +13,7 @@ import java.time.LocalDate;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Cliente c1 = new Cliente("","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
+        Cliente c1 = new Cliente("Caio","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
         Cliente c2 = new Cliente("Bernardo","Prata",10.0,"Rua S Robert Kennedy - 53", "Bela Vista", "Alegre");
         Cliente c3 = new Cliente("Lukas","Bronze",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
         Cliente c4 = new Cliente("jao","",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
