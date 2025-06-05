@@ -10,6 +10,9 @@ public class Pedido {
     private Cliente cliente;
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
+    private CupomDescontoPedido cupomDescontoPedido;
+    private Double valorPedidoTotal;
+    private Double descontoPedido;
 
     public Pedido(Cliente cliente, LocalDate data){
         this.taxaEntrega = 10;
@@ -17,20 +20,30 @@ public class Pedido {
         this.cliente = cliente;
         this.itens = new ArrayList<Item>();
         this.cuponsDescontoEntrega = new ArrayList<CupomDescontoEntrega>();
+        this.cupomDescontoPedido = null;
+        this.valorPedidoTotal = 0.0;
+        this.descontoPedido = 0.0;
     }
 
     public void adicionarItem(Item item){
         itens.add(item);
     }
 
+    public Double getValorPedidoTotal() {
+        return valorPedidoTotal + this.taxaEntrega;
+    }
+
     public Double getValorPedido(){
-        Double valorTotal=0.0;
+        if(this.valorPedidoTotal == 0){
+            Double valorTotal=0.0;
 
-        for (Item item : this.itens) {
-            valorTotal += item.getValorTotal();
+            for (Item item : this.getItens()) {
+                valorTotal += item.getValorTotal();
+            }
+
+            this.valorPedidoTotal=(valorTotal);
         }
-
-        return valorTotal + this.taxaEntrega;
+        return(this.getValorPedidoTotal() - this.descontoPedido);
     }
 
     public Cliente getClient(){
@@ -49,16 +62,15 @@ public class Pedido {
         cuponsDescontoEntrega.add(desconto);
     }
 
-    public void aplicarDesconto(){
+    public void aplicarDescontoEntrega(){
+        Double descontoEntregaTotal = 0.0;
         for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
-            this.taxaEntrega -= cupom.getValorDesconto();
-            if (this.taxaEntrega < 0) {
-                this.taxaEntrega = 0;
-            }
+            descontoEntregaTotal += cupom.getValorDesconto();
         }
+        this.taxaEntrega -= descontoEntregaTotal;
     }
 
-    public Double getDescontoConcedido(){
+    public Double getDescontoEntregaConcedido(){
         Double descontoConcedido = 0.0;
 
         for (CupomDescontoEntrega cupom : cuponsDescontoEntrega){
@@ -66,6 +78,22 @@ public class Pedido {
         }
 
         return descontoConcedido;
+    }
+
+    public CupomDescontoPedido getCupomDescontoPedido() {
+        return cupomDescontoPedido;
+    }
+
+    public void setDescontoPedido(Double descontoPedido) {
+        this.descontoPedido = descontoPedido;
+    }
+
+    public void aplicarDescontoPedido(){
+        this.setDescontoPedido(this.cupomDescontoPedido.getValorDescontado());
+    }
+
+    public void setCupomDescontoPedido(CupomDescontoPedido novoCupom) {
+        this.cupomDescontoPedido = novoCupom;
     }
 
     public ArrayList<CupomDescontoEntrega> getCuponsDescontoEntrega(){
@@ -79,11 +107,12 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-                "taxaEntrega=" + taxaEntrega +
+                "valor do Pedido= R$ " + getValorPedido() +
+                ", taxaEntrega=" + taxaEntrega +
                 ", cliente=" + cliente.getNome() +
                 ", itens=" + itens +
                 ", cuponsDescontoEntrega=" + cuponsDescontoEntrega +
-                ", valor do Pedido= R$ " + getValorPedido() +
+                ", cupomDescontoPedido=" + cupomDescontoPedido +
                 '}';
     }
 }
