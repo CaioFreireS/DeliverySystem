@@ -51,7 +51,7 @@ public class Main {
         CalculadoraDescontoPedidoService calc2 = new CalculadoraDescontoPedidoService();
         calc2.calcularValorDesconto(p1,"DESC10");
         System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedido());
-        System.out.println("Apos o desconto ficará: R$ "+ (p1.getValorPedido() - p1.getCupomDescontoPedido().getValorDescontado()));
+        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: - R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
         p1.aplicarDescontoPedido();
         calc0.calcularValorPedido(p1);
         System.out.println(p1.toString());

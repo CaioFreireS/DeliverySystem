@@ -20,6 +20,7 @@ public class Pedido {
         this.itens = new ArrayList<Item>();
         this.cuponsDescontoEntrega = new ArrayList<CupomDescontoEntrega>();
         this.cupomDescontoPedido =  null;
+        this.valorPedido = 0.0;
     }
 
     public void adicionarItem(Item item){
@@ -27,11 +28,16 @@ public class Pedido {
     }
 
     public Double getValorPedido(){
-        return this.valorPedido;
-    }
+        if(this.valorPedido == 0){
+            Double valorTotal=0.0;
 
-    public void setValorPedido(Double valorPedido) {
-        this.valorPedido = valorPedido;
+            for (Item item : this.getItens()) {
+                valorTotal += item.getValorTotal();
+            }
+
+            return(valorTotal + this.taxaEntrega);
+        }
+        return(this.valorPedido);
     }
 
     public Cliente getClient(){
@@ -51,16 +57,16 @@ public class Pedido {
     }
 
     public void aplicarDescontoEntrega(){
+        Double descontoEntregaTotal = 0.0;
         for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
-            this.taxaEntrega -= cupom.getValorDesconto();
-            if (this.taxaEntrega < 0) {
-                this.taxaEntrega = 0;
-            }
+            descontoEntregaTotal += cupom.getValorDesconto();
         }
+        this.taxaEntrega -= descontoEntregaTotal;
+        this.valorPedido -= descontoEntregaTotal;
     }
 
     public void aplicarDescontoPedido(){
-        this.valorPedido-=this.cupomDescontoPedido.getValorDescontado();
+        this.valorPedido -= this.cupomDescontoPedido.getValorDescontado();
     }
 
     public Double getDescontoConcedido(){
@@ -92,12 +98,12 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-                "taxaEntrega=" + taxaEntrega +
+                "valor do Pedido= R$ " + valorPedido +
+                ", taxaEntrega=" + taxaEntrega +
                 ", cliente=" + cliente.getNome() +
                 ", itens=" + itens +
                 ", cuponsDescontoEntrega=" + cuponsDescontoEntrega +
                 ", cupomDescontoPedido=" + cupomDescontoPedido +
-                ", valor do Pedido= R$ " + getValorPedido() +
                 '}';
     }
 }
