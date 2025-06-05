@@ -7,6 +7,8 @@ public class CupomDescontoPedido {
 
     public CupomDescontoPedido(String codigo) {
         this.codigoDescontoPedido = codigo;
+        this.percentualDescontoPedido = 0.0;
+        this.valorDescontado = 0.0;
     }
     public String getCodigoDescontoPedido() {
         return codigoDescontoPedido;

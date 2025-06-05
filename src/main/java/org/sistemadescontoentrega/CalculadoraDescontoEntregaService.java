@@ -1,4 +1,4 @@
-package org.SistemaDescontoEntrega;
+package org.sistemadescontoentrega;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Pedido;
@@ -23,7 +23,7 @@ public class CalculadoraDescontoEntregaService {
     public void calcularDesconto(Pedido pedido) {
         if (interruptor) {
             for (IMetodoDescontoTaxaEntrega metodo : metodosDeDesconto){
-                if(metodo.seAplica(pedido) && pedido.getDescontoConcedido()<pedido.getTaxaEntrega()){
+                if(metodo.seAplica(pedido) && pedido.getDescontoEntregaConcedido()<pedido.getTaxaEntrega()){
                     metodo.calcularDesconto(pedido);
                     penalizaDesconto(pedido);
                 }
@@ -38,7 +38,7 @@ public class CalculadoraDescontoEntregaService {
     }
 
     public void penalizaDesconto(Pedido pedido) {
-        Double descontoAtual = pedido.getDescontoConcedido();
+        Double descontoAtual = pedido.getDescontoEntregaConcedido();
         ArrayList<CupomDescontoEntrega> cupons = pedido.getCuponsDescontoEntrega();
         CupomDescontoEntrega cupomFinal = cupons.get(cupons.size()-1);
         Double penalidade = descontoAtual - pedido.getTaxaEntrega();

@@ -1,4 +1,4 @@
-package org.SistemaDescontoEntrega;
+package org.sistemadescontoentrega;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Item;
@@ -20,7 +20,7 @@ public class MetodoDescontoTipoItem implements IMetodoDescontoTaxaEntrega {
     @Override
     public void calcularDesconto(Pedido pedido) {
         for (Item item : pedido.getItens()) {
-            if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase()) && pedido.getDescontoConcedido()<pedido.getTaxaEntrega()) {
+            if (descontosPorTipoItem.containsKey(item.getTipo().toLowerCase()) && pedido.getDescontoEntregaConcedido()<pedido.getTaxaEntrega()) {
                 pedido.addCupomDescontoEntrega(new CupomDescontoEntrega("Cupom por Item do Tipo (" + item.getTipo() + ")", descontosPorTipoItem.get(item.getTipo().toLowerCase())));
             }
         }

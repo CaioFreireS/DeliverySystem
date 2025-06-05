@@ -1,4 +1,4 @@
-package org.SistemaDescontoEntrega;
+package org.sistemadescontoentrega;
 
 import org.model.Pedido;
 

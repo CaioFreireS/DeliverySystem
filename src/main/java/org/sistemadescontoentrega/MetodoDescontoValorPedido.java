@@ -1,4 +1,4 @@
-package org.SistemaDescontoEntrega;
+package org.sistemadescontoentrega;
 
 import org.model.CupomDescontoEntrega;
 import org.model.Pedido;
@@ -19,7 +19,7 @@ public class MetodoDescontoValorPedido implements IMetodoDescontoTaxaEntrega {
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        return (pedido.getValorPedido()>limiteValorPedido && pedido.getDescontoConcedido()<10);
+        return (pedido.getValorPedido()>limiteValorPedido && pedido.getDescontoEntregaConcedido()<10);
     }
 
 }

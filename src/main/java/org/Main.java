@@ -1,13 +1,12 @@
 package org;
 
 
-import org.SistemaDescontoPedido.CalculadoraDescontoPedidoService;
+import org.sistemadescontopedido.CalculadoraDescontoPedidoService;
 import org.model.Cliente;
 import org.model.Item;
 import org.model.Pedido;
-import org.SistemaDescontoEntrega.CalculadoraDescontoEntregaService;
+import org.sistemadescontoentrega.CalculadoraDescontoEntregaService;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -39,15 +38,28 @@ public class Main {
         calc1.calcularDesconto(p1);
         System.out.println("Sua taxa de entrega é: R$ "+ p1.getTaxaEntrega());
         System.out.println("Descontos Concedidos: "+ p1.getCuponsDescontoEntrega());
-        System.out.println("Descontos irão dar: - R$ "+ p1.getDescontoConcedido());
+        System.out.println("Descontos irão dar: R$ "+ p1.getDescontoEntregaConcedido());
 
         p1.aplicarDescontoEntrega();
         System.out.println("Sua taxa de entrega com os cupons é: R$"+ p1.getTaxaEntrega());
 
+
+
         CalculadoraDescontoPedidoService calc2 = new CalculadoraDescontoPedidoService();
+
+        System.out.println("desc10 agora");
         calc2.calcularValorDesconto(p1,"DESC10");
-        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedido());
-        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: - R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
+
+        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
+        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
+        p1.aplicarDescontoPedido();
+        System.out.println(p1.toString());
+
+        calc2.calcularValorDesconto(p1,"DESC20");
+
+        System.out.println("desc20 agora");
+        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
+        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
         p1.aplicarDescontoPedido();
         System.out.println(p1.toString());
     }
