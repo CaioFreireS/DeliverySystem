@@ -26,9 +26,6 @@ public class MetodoDescontoTaxaPorTipoCliente implements IMetodoDescontoTaxaEntr
     @Override
     public boolean seAplica(Pedido pedido) {
         tipoCliente=pedido.getClient().getTipo();
-        if (tipoCliente.isEmpty()){
-            tipoCliente="nenhum";
-        }
         return descontosPorTipoCliente.containsKey(tipoCliente.toLowerCase());
     }
 

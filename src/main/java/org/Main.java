@@ -13,7 +13,7 @@ import java.time.LocalDate;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Cliente c1 = new Cliente("Caio","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
+        Cliente c1 = new Cliente("","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
         Cliente c2 = new Cliente("Bernardo","Prata",10.0,"Rua S Robert Kennedy - 53", "Bela Vista", "Alegre");
         Cliente c3 = new Cliente("Lukas","Bronze",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
         Cliente c4 = new Cliente("jao","",10.0,"Rua S Robert Kennedy - 53", "Cidade Maravilhosa", "Alegre");
@@ -47,17 +47,22 @@ public class Main {
 
         CalculadoraDescontoPedidoService calc2 = new CalculadoraDescontoPedidoService();
 
-        System.out.println("desc10 agora");
+        System.out.println("aplicar o desconto desc10");
         calc2.calcularValorDesconto(p1,"DESC10");
-
         System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
         System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
         p1.aplicarDescontoPedido();
         System.out.println(p1.toString());
 
+        System.out.println("trocar para o desconto desc20");
         calc2.calcularValorDesconto(p1,"DESC20");
+        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
+        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
+        p1.aplicarDescontoPedido();
+        System.out.println(p1.toString());
 
-        System.out.println("desc20 agora");
+        System.out.println("trocar para o desconto desc10");
+        calc2.calcularValorDesconto(p1,"DESC10");
         System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
         System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
         p1.aplicarDescontoPedido();
