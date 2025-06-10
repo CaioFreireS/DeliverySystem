@@ -1,17 +1,13 @@
 package org;
 
 
-import org.sistemadescontopedido.CalculadoraDescontoPedidoService;
-import org.model.Cliente;
-import org.model.Item;
-import org.model.Pedido;
-import org.sistemadescontoentrega.CalculadoraDescontoEntregaService;
-
+import org.model.*;
+import org.sistemadescontopedido.*;
+import org.sistemadescontoentrega.*;
 import java.time.LocalDate;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
     public static void main(String[] args) {
         Cliente c1 = new Cliente("Caio","Ouro",10.0,"Rua S Robert Kennedy - 51", "Centro", "Alegre");
         Cliente c2 = new Cliente("Bernardo","Prata",10.0,"Rua S Robert Kennedy - 53", "Bela Vista", "Alegre");
@@ -43,29 +39,20 @@ public class Main {
         p1.aplicarDescontoEntrega();
         System.out.println("Sua taxa de entrega com os cupons é: R$"+ p1.getTaxaEntrega());
 
-
-
+        testeCupomDescontoPedido("DESC10", 0.10, p1);
+        testeCupomDescontoPedido("DESC20", 0.20, p1);
+        testeCupomDescontoPedido("DESC10", 0.10, p1);
+    }
+    public static void testeCupomDescontoPedido(String codigo, Double percentual,Pedido pedido){
+        System.out.println("");
+        CupomDescontoPedidoRepository repo = new CupomDescontoPedidoRepository();
         CalculadoraDescontoPedidoService calc2 = new CalculadoraDescontoPedidoService();
-
-        System.out.println("aplicar o desconto desc10");
-        calc2.calcularValorDesconto(p1,"DESC10");
-        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
-        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
-        p1.aplicarDescontoPedido();
-        System.out.println(p1.toString());
-
-        System.out.println("trocar para o desconto desc20");
-        calc2.calcularValorDesconto(p1,"DESC20");
-        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
-        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
-        p1.aplicarDescontoPedido();
-        System.out.println(p1.toString());
-
-        System.out.println("trocar para o desconto desc10");
-        calc2.calcularValorDesconto(p1,"DESC10");
-        System.out.println("O preço do seu pedido é: R$ " + p1.getValorPedidoTotal());
-        System.out.println("o codigo " + p1.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ p1.getCupomDescontoPedido().getValorDescontado());
-        p1.aplicarDescontoPedido();
-        System.out.println(p1.toString());
+        System.out.println("teste para o desconto " + codigo);
+        CupomDescontoPedido cupomNovo = new CupomDescontoPedido(codigo, percentual);
+        calc2.calcularValorDesconto(pedido,new RegraCupomPercentual(cupomNovo,repo));
+        System.out.println("O preço do seu pedido é: R$ " + pedido.getValorPedidoTotal());
+        System.out.println("o codigo " + pedido.getCupomDescontoPedido().getCodigoDescontoPedido() + " te dará: R$ "+ pedido.getCupomDescontoPedido().getValorDescontado());
+        pedido.aplicarDescontoPedido();
+        System.out.println(pedido.toString());
     }
 }

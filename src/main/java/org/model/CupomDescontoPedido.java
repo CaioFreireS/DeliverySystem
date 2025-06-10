@@ -5,12 +5,12 @@ public class CupomDescontoPedido {
     private Double percentualDescontoPedido;
     private Double valorDescontado;
 
-    public CupomDescontoPedido(String codigo) {
+    public CupomDescontoPedido(String codigo, Double percentualDescontoPedido) {
         if(codigo == null || codigo.isEmpty()){
             throw new NullPointerException("ERRO! Codigo do cupom não pode ser vazio.");
         }
         this.codigoDescontoPedido = codigo;
-        this.percentualDescontoPedido = 0.0;
+        this.percentualDescontoPedido = percentualDescontoPedido;
         this.valorDescontado = 0.0;
     }
     public String getCodigoDescontoPedido() {
@@ -23,13 +23,6 @@ public class CupomDescontoPedido {
 
     public Double getValorDescontado() {
         return valorDescontado;
-    }
-
-    public void setPercentualDescontoPedido(Double percentualDescontoPedido) {
-        if(percentualDescontoPedido == null || percentualDescontoPedido < 0){
-            throw new RuntimeException("ERRO! Percentual de desconto não pode ser vazio.");
-        }
-        this.percentualDescontoPedido = percentualDescontoPedido;
     }
 
     public void setValorDescontado(Double valorDescontado) {
